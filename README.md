@@ -2,17 +2,15 @@
 
 Scripts to simplify prepping datasets for Mozilla's DeepSpeech. All scripts require Python 3.
 
-## csv_combiner
+## clip_stats
 
-Merge multiple CSV files together. CSVs should already be in DeepSpeech format (filename,file size,transcript) before merging. The script will make sure CSV headers aren't repeated and that every file has an absolute path.
+Count the number of files, total file size and total duration of a group of audio files.
 
 ### Usage
 
 ~~~~
 clip_stats.py [--no-estimate] <directory or CSV to scan>
 ~~~~
-
-Count the number of files, total file size and total duration of a group of audio files.
 
 `<directory or CSV to scan>` - either a directory containing WAV files or a CSV file in DeepSpeech format with the filename as the first column.
 
@@ -27,6 +25,10 @@ A list of all files found, their total size and the total duration in hours. Thi
 ~~~~
 Found 32242 files, 9482.20 MB, 86.31 hours 
 ~~~~
+
+## csv_combiner
+
+Merge multiple CSV files together. CSVs should already be in DeepSpeech format (filename,file size,transcript) before merging. The script will make sure CSV headers aren't repeated and that every file has an absolute path.
 
 ~~~~
 csv_combiner.py --dest <combined CSV file> <individual CSV file 1> <individual CSV file 2>...
