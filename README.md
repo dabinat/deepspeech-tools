@@ -14,7 +14,7 @@ clip_stats.py [--no-estimate] <directory or CSV to scan>
 
 `<directory or CSV to scan>` - either a directory containing WAV files or a CSV file in DeepSpeech format with the filename as the first column.
 
-`-no-estimate` - by default the script will estimate the duration based on the file size, assuming 16-bit 16000Hz mono audio files. Use this flag to get the actual duration from ffmpeg, which is useful if the estimates are not accurate enough or if your audio is at a different sample rate. Note that this option is significantly slower than estimation.
+`--no-estimate` - by default the script will estimate the duration based on the file size, assuming 16-bit 16000Hz mono audio files. Use this flag to get the actual duration from ffmpeg, which is useful if the estimates are not accurate enough or if your audio is at a different sample rate. Note that this option is significantly slower than estimation.
 
 ### Output
 
