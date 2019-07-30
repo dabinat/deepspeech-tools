@@ -9,6 +9,26 @@ Merge multiple CSV files together. CSVs should already be in DeepSpeech format (
 ### Usage
 
 ~~~~
+clip_stats.py [--no-estimate] <directory or CSV to scan>
+~~~~
+
+Count the number of files, total file size and total duration of a group of audio files.
+
+`<directory or CSV to scan>` - either a directory containing WAV files or a CSV file in DeepSpeech format with the filename as the first column.
+
+`-no-estimate` - by default the script will estimate the duration based on the file size, assuming 16-bit 16000Hz mono audio files. Use this flag to get the actual duration from ffmpeg, which is useful if the estimates are not accurate enough or if your audio is at a different sample rate. Note that this option is significantly slower than estimation.
+
+### Output
+
+A list of all files found, their total size and the total duration in hours. This total updates dynamically as the scan progresses.
+
+**Sample output**
+
+~~~~
+Found 32242 files, 9482.20 MB, 86.31 hours 
+~~~~
+
+~~~~
 csv_combiner.py --dest <combined CSV file> <individual CSV file 1> <individual CSV file 2>...
 ~~~~
 
