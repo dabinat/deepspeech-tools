@@ -64,6 +64,52 @@ csv_purge.py --source <source CSV file> --dest <dest CSV file> --purge-list <tex
 python3 csv_purge.py --source train.csv --dest train-purged.csv --purge-list bad-clips.csv
 ~~~~
 
+## transcript_check
+
+Checks for significant differences in the number of words a transcript was supposed to return versus the actual number. For example, a clip that was supposed to return five words but returns ten could be an indication of repetition or additional background voices. A clip that was supposed to return twelve words but returns three could indicate excessive noise, a partial recording or an extremely quiet recording.
+
+Note that the purpose of this tool is to flag up clips for further inspection. It is likely to contain false positives from difficult accents and challenging noise environments. It is not recommended that you filter out clips based on the direct output of this script without human review first.
+
+Also note that for best results, you shouldn't check a dataset with a model that was trained on that dataset. So if you're checking Common Voice, you should train on a model that does not include Common Voice data.
+
+This script requires the DeepSpeech command-line tool to be installed (`which deepspeech` should not return an empty string). It's strongly recommended to run this on the CUDA version of DeepSpeech with as powerful a graphics card as possible.
+
+### Usage
+
+~~~~
+transcript_check.py --input <CSV file> --model-dir <dir> [--threshold <float>] [--min-word-diff <int>] [--start-line <int>]
+
+transcript_check.py --input <CSV file> --model <model> --alphabet <alphabet> --lm <lm> --trie <trie> [--threshold <float>] [--min-word-diff <int>] [--start-line <int>]
+~~~~
+
+`--input` - A CSV file in DeepSpeech format (filename, file size, transcript).
+
+`--model-dir` - A directory containing a DeepSpeech model (.pb or .pbmm), alphabet (.txt), language model (.binary) and trie. 
+If you specify this option, the script will ascertain the paths automatically so you don't need to use the --model, --lm, etc arguments. However, you can still use those arguments individually to override paths in the model directory. 
+
+`--threshold` - The percentage difference in word count required to flag up a clip. Default is 0.3.
+
+`--min-word-diff` - The minimum number of words that have to be different in order to flag up a clip. This prevents the threshold percentage flagging up too many clips with short transcripts. Default is 2.
+
+`--start-line` - The line in the source CSV to begin processing. Due to the slow speed of inference, you can use this to avoid processing files you've already checked or start processing at an arbitrary point in a large dataset. The first line of the CSV starts at 1.
+
+### Output
+
+**Sample output**
+
+~~~~
+***
+File: /home/ubuntu/commonvoice/clips/common_voice_en_18849927.wav
+Expected transcript: eight warships of the royal navy have also been named after him
+Actual transcript: eight or siseroan also we open
+***
+***
+File: /home/ubuntu/commonvoice/clips/common_voice_en_18849337.wav
+Expected transcript: the increase in jobs resulted in a huge immigrant population of russians in belarus
+Actual transcript: in passeriano
+***
+~~~~
+
 ## wav_check
 
 Locate corrupt WAV files in a directory. Requires ffmpeg to be installed.
