@@ -44,6 +44,26 @@ csv_combiner.py --dest <combined CSV file> <individual CSV file 1> <individual C
 python3 csv_combiner.py --dest train-combined.csv ../commonvoice/train.csv ../librispeech/train.csv
 ~~~~
 
+## csv_purge
+
+Take a list of filenames and strip them from a CSV file.
+
+~~~~
+csv_purge.py --source <source CSV file> --dest <dest CSV file> --purge-list <text or CSV file>
+~~~~
+
+`--source` - The CSV file you want to strip lines from. This should already be in DeepSpeech format (filename, file size, transcript).
+
+`--dest` - The destination CSV file without the stripped lines.
+
+`--purge-list` - A file containing filenames you wish to strip from the CSV. This can either be a text file with a filename on each line or a CSV with the filename as the first column. Paths can be either absolute or just the filename by itself.
+
+**Example**
+
+~~~~ 
+python3 csv_purge.py --source train.csv --dest train-purged.csv --purge-list bad-clips.csv
+~~~~
+
 ## wav_check
 
 Locate corrupt WAV files in a directory. Requires ffmpeg to be installed.
