@@ -52,7 +52,7 @@ Take a list of filenames and strip them from a CSV file.
 csv_purge.py --source <source CSV file> --dest <dest CSV file> --purge-list <text or CSV file>
 ~~~~
 
-`--source` - The CSV file you want to strip lines from. This should already be in DeepSpeech format (filename, file size, transcript).
+`--source` - The CSV file you want to strip lines from. The filename should be the first column.
 
 `--dest` - The destination CSV file without the stripped lines.
 
