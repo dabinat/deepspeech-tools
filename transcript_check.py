@@ -115,6 +115,7 @@ def runScript():
 				if not compareTranscripts(expected_transcript, actual_transcript):
 					print("***")
 					print("File: " + components[0])
+					print("Line: " + str(line_no))
 					print("Expected transcript: " + expected_transcript)
 					print("Actual transcript: " + actual_transcript)
 					print("***")

@@ -100,11 +100,13 @@ If you specify this option, the script will ascertain the paths automatically so
 ~~~~
 ***
 File: /home/ubuntu/commonvoice/clips/common_voice_en_18849927.wav
+Line: 1487
 Expected transcript: eight warships of the royal navy have also been named after him
 Actual transcript: eight or siseroan also we open
 ***
 ***
 File: /home/ubuntu/commonvoice/clips/common_voice_en_18849337.wav
+Line: 1492
 Expected transcript: the increase in jobs resulted in a huge immigrant population of russians in belarus
 Actual transcript: in passeriano
 ***
